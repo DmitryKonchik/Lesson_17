@@ -1,6 +1,7 @@
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,8 +13,10 @@ public class Main {
         // First Task
 //        whenYouHas100Birthday();
         //Second Task
-        int[] num = new int[] {10, -1, -2, 11, 2, 0};
-        positiveNumbers(num);
+//        int[] num = new int[]{10, -1, -2, 11, 2, 0};
+//        positiveNumbers(num);
+        //Third task
+        System.out.println(convertMoney("dsg100 BYN123", 3.2));
 
     }
 
@@ -47,10 +50,26 @@ public class Main {
     static void positiveNumbers(int[] num) {
         //Second Task
         Predicate<Integer> isPositive = x -> x >= 0;
-        for (int n: num) {
+        for (int n : num) {
             if (isPositive.test(n)) {
                 System.out.println(n);
             }
         }
+    }
+
+    static double convertMoney(String money, double exchangeRate) {
+        //Third task
+//        String str = money.replaceAll("\\s+\\w+", "");
+        String str = trimStr(money);
+        Function<String, Double> convert = Double::parseDouble;
+        return convert.apply(str) * exchangeRate;
+    }
+
+    static String trimStr(String money) {
+        //Third task
+        Pattern pattern = Pattern.compile("[0-9]+");
+        Matcher matcher = pattern.matcher(money);
+        matcher.find();
+        return matcher.group();
     }
 }
