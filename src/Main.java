@@ -1,17 +1,23 @@
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
 
+
         // First Task
-        whenYouHas100Birthday();
+//        whenYouHas100Birthday();
+        //Second Task
+        int[] num = new int[] {10, -1, -2, 11, 2, 0};
+        positiveNumbers(num);
 
     }
 
-    static void whenYouHas100Birthday () {
+    static void whenYouHas100Birthday() {
         // First Task
 
         Scanner scanner = new Scanner(System.in);
@@ -27,7 +33,8 @@ public class Main {
         LocalDate date = LocalDate.parse(data1);
         System.out.println(date.plusYears(100));
     }
-    static boolean checkDate (String date) {
+
+    static boolean checkDate(String date) {
         // First Task
         Pattern pattern = Pattern.compile("[0-9]{4}[-/.][0-9]{2}[-/.][0-9]{2}");
         Matcher matcher = pattern.matcher(date);
@@ -35,5 +42,15 @@ public class Main {
             return true;
         }
         return false;
+    }
+
+    static void positiveNumbers(int[] num) {
+        //Second Task
+        Predicate<Integer> isPositive = x -> x >= 0;
+        for (int n: num) {
+            if (isPositive.test(n)) {
+                System.out.println(n);
+            }
+        }
     }
 }
