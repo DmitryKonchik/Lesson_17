@@ -1,9 +1,6 @@
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Scanner;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,14 +9,16 @@ public class Main {
 
 
         // First Task
-//        whenYouHas100Birthday();
+        whenYouHas100Birthday();
         //Second Task
-//        int[] num = new int[]{10, -1, -2, 11, 2, 0};
-//        positiveNumbers(num);
+        int[] num = new int[]{10, -1, -2, 11, 2, 0};
+        positiveNumbers(num);
         //Third task
         System.out.println(convertMoney("dsg100 BYN123", 3.2));
         //Fourth task
         convertMoneyAndPrint("dsg100 BYN123", 3.2);
+        //Fifth task
+        System.out.println(reverseString());
     }
 
     static void whenYouHas100Birthday() {
@@ -79,5 +78,16 @@ public class Main {
 //        Consumer<String> convert = m -> System.out.println(Double.parseDouble(trimStr(m)) * exchangeRate + " USD");
         Consumer<String> convert = m -> System.out.println(convertMoney(money, exchangeRate) + " USD");
         convert.accept(money);
+    }
+
+    static String reverseString() {
+        //Fifth task
+        Supplier<String> reverse = () -> {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Введите строку которую хотите развернуть");
+            StringBuilder sb = new StringBuilder(scanner.nextLine());
+            return sb.reverse().toString();
+        };
+        return reverse.get();
     }
 }
